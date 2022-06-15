@@ -1,0 +1,115 @@
+!-------------------------Created by DC 11/19/2012---------------------------------!
+MODULE vfunction
+
+IMPLICIT NONE
+!----------------------------------------------------------------------------------!
+! This module calculates the v(z) function                                         !
+!----------------------------------------------------------------------------------!
+
+SUBROUTINE vn(x)
+!------------------------------------------------------------------------------!
+!  Calculates the VN function                                                 !
+!------------------------------------------------------------------------------!
+USE kinds
+USE variables, ONLY:CV,vnfun
+USE bernoulli
+
+REAL(dbl),INTENT(IN)::x
+INTEGER(istd)::i
+REAL(dbl)::sum
+
+sum=0.0_dbl
+
+DO i=2,10
+  sum=sum+CV(i)*(x**(2*n-2))
+END DO
+
+vsifun=sum
+
+VN := proc(d,g);
+sign(g)*evalf(-log(abs(d))^2/4-Pi^2/12+DL((1-abs(g))/2)+log((1+abs(g))/2)^2/2)
+end;
+WRITE(*,*)'The VS function',vsfun
+
+END SUBROUTINE vs(x)
+
+
+
+
+
+SUBROUTINE vs(x)
+!------------------------------------------------------------------------------!
+!  Calculates the VS function                                                 !
+!------------------------------------------------------------------------------!
+USE kinds
+USE variables, ONLY:CV,vsfun
+USE bernoulli
+
+REAL(dbl),INTENT(IN)::x
+INTEGER(istd)::i
+REAL(dbl)::sum
+
+sum=0.0_dbl
+
+DO i=2,10
+  sum=sum+CV(i)*(x**(2*n-2))
+END DO
+
+vsifun=sum
+
+WRITE(*,*)'The VS function',vsfun
+
+END SUBROUTINE vs(x)
+
+SUBROUTINE vsi(x)
+!------------------------------------------------------------------------------!
+!  Calculates the VSI function                                                 !
+!------------------------------------------------------------------------------!
+USE kinds
+USE variables, ONLY:CV,vsifun
+USE bernoulli
+
+REAL(dbl),INTENT(IN)::x
+INTEGER(istd)::i
+REAL(dbl)::sum
+
+sum=0.0_dbl
+
+DO i=2,10
+  sum=sum+CV(i)*(x**(2*n-2))*(-1.0_dbl)**(n-1)
+END DO
+
+vsifun=sum
+
+WRITE(*,*)'The VSI function',vsifun
+
+END SUBROUTINE vsi(x)
+
+SUBROUTINE vcl(x)
+!----------------------------------------------------------------------------------!
+! Calculates VCL function
+!----------------------------------------------------------------------------------!
+USE kinds
+USE variables, ONLY:BB,vclfun
+USE bernoulli
+
+REAL(dbl),INTENT(IN)::x
+INTEGER(istd)::i
+REAL(dbl)::w,sum
+
+sum=0.0_dbl
+
+w=2.0_dbl*DATANH(x)
+
+DO i=1,15
+   sum=sum+((BB(i)*(2.0_dbl**(2*i)-1.0_dbl)*w**(2*i))/  &
+            (2.0_dbl*i*(2.0_dbl*i+1.0_dbl))) 
+END DO
+
+vclfun=-w*(Log(2.0_dbl))+sum
+
+WRITE(*,*)'The VCL function',vclfun
+
+END SUBROUTINE vcl(x) 
+
+END MODULE vfunction

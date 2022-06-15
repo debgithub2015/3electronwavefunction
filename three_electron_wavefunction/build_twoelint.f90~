@@ -1,0 +1,23 @@
+!--------------------Created by DC on 11/20/2012-----------------------------------!
+
+MODULE build_twoelfunc
+
+IMPLICIT NONE
+
+SUBROUTINE sigma
+
+END SUBROUTINE sigma
+
+SUBROUTINE remsingsigma
+
+END SUBROUTINE remsingsigma
+
+SUBROUTINE muandgamma
+
+END SUBROUTINE muandgamma
+
+SUBROUTINE inteledist
+
+END SUBROUTINE inteledist
+
+END MODULE build_twoelfunc
